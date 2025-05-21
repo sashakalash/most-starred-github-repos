@@ -1,0 +1,5 @@
+<cdk-virtual-scroll-viewport itemSize="100">
+  <app-repo *cdkVirtualFor="let repo of data; trackBy: trackById"
+            [repo]="repo"
+            (click)="onRepoClick(repo)" />
+</cdk-virtual-scroll-viewport>
