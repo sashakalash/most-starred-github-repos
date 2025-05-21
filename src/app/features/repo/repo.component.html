@@ -1,0 +1,32 @@
+@let repoItem = repo();
+@if (repoItem) {
+  <div class="repo-container">
+    <div class="repo-owner-image">
+      <img
+        [src]="repoItem.owner.avatar_url"
+        alt="Owner Avatar"
+        class="repo-avatar"
+      />
+    </div>
+
+    <div class="repo-content">
+      <div class="repo-title-container">
+        <h2 class="repo-title">{{ repoItem.name }}</h2>
+      </div>
+      <p class="repo-description">{{ repoItem.description }}</p>
+
+      <div class="repo-info">
+        <span>Stars: {{ repoItem.stargazers_count }}</span>
+        <span>Issues: {{ repoItem.open_issues_count }}</span>
+        <span
+          >Submitted: {{ repoItem.created_at | daysSince }} days ago by
+          {{ repoItem.owner.login }}</span
+        >
+      </div>
+    </div>
+  </div>
+} @else {
+  <div class="repo-container">
+    <p>Loading...</p>
+  </div>
+}

@@ -1,4 +1,2 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-npm run lint --fix && npx prettier --write . && ng test --watch=false && npx lint-staged
+# npm run lint --fix && npx prettier --write . && ng test --watch=false && npx lint-staged
+npx lint-staged

@@ -1,0 +1,7 @@
+<cdk-virtual-scroll-viewport itemSize="100">
+  <app-repo
+    *cdkVirtualFor="let repo of data; trackBy: trackById"
+    [repo]="repo"
+    style="height: 50px"
+  />
+</cdk-virtual-scroll-viewport>

@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+
+import { RepoListComponent } from '@app/features/repo-list/repo-list.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  imports: [RepoListComponent],
 })
-export class AppComponent {
-  title = 'most-starred-github-repos';
-}
+export class AppComponent {}

@@ -200,20 +200,20 @@ module.exports = tseslint.config(
           format: ['camelCase', 'UPPER_CASE', 'PascalCase'],
         },
         {
-          selector: 'variable',
-          filter: {
-            regex: 'Store$',
-            match: true,
-          },
-          format: null,
-        },
-        {
           selector: 'enumMember',
           format: ['UPPER_CASE'],
         },
         {
           selector: 'typeProperty',
           format: ['snake_case', 'camelCase'],
+        },
+        {
+          selector: 'objectLiteralProperty',
+          format: null,
+          filter: {
+            regex: '^(Accept|X-GitHub-Api-Version)$',
+            match: true,
+          },
         },
       ],
       '@typescript-eslint/no-empty-function': 'off',
