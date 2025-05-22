@@ -151,6 +151,7 @@ module.exports = tseslint.config(
       '@angular-eslint/no-output-on-prefix': 'error',
       '@angular-eslint/no-output-rename': 'error',
       '@angular-eslint/no-outputs-metadata-property': 'error',
+      '@angular-eslint/template/click-events-have-key-events': 'off',
       '@angular-eslint/use-lifecycle-interface': 'error',
       '@angular-eslint/use-pipe-transform-interface': 'error',
       '@typescript-eslint/adjacent-overload-signatures': 'error',

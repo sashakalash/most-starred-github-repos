@@ -1,0 +1,26 @@
+.star-rating {
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+
+  mat-icon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    color: black;
+    transition: color 0.2s ease;
+
+    &.disabled {
+      pointer-events: none;
+      cursor: auto;
+    }
+
+    &.hovered,
+    &.selected {
+      color: gold;
+    }
+  }
+}

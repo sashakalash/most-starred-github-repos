@@ -1,29 +1,40 @@
+import { RatingComponent } from '@app/shared/components/rating/rating.component';
 import { CommonModule } from '@angular/common';
-import { Component, Inject, Input, Optional } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  Component,
+  computed,
+  inject,
+  input,
+  output,
+  OutputEmitterRef,
+} from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 
 import { IRepo } from '@app/shared/interfaces/repo.interface';
 import { DaysSincePipe } from '@app/shared/pipes/daysSince.pipe';
+import { RatingService } from '@app/core/services/rating.service';
 
 @Component({
   selector: 'app-repo',
-  imports: [MatListModule, CommonModule, DaysSincePipe],
+  imports: [MatListModule, CommonModule, DaysSincePipe, RatingComponent],
   templateUrl: './repo.component.html',
   styleUrl: './repo.component.scss',
 })
 export class RepoComponent {
-  private _repo: IRepo = {} as IRepo;
+  repo = input.required<IRepo>();
+  isModal = input<boolean>(false);
+  rating = computed(() => {
+    const repos = this.ratingService.ratedRepos();
+    if (repos) {
+      return repos.get(this.repo().id) ?? 0;
+    }
+    return 0;
+  });
 
-  @Input()
-  set repo(value: IRepo) {
-    this._repo = value;
-  }
-  get repo(): IRepo {
-    return this.data?.repo ?? this._repo;
-  }
+  private ratingService = inject(RatingService);
+  rated: OutputEmitterRef<number> = output();
 
-  constructor(
-    @Optional() @Inject(MAT_DIALOG_DATA) public data?: { repo: IRepo }
-  ) {}
+  onRepoRated(rating: number): void {
+    this.rated.emit(rating);
+  }
 }

@@ -1,31 +1,33 @@
-@if (repo) {
-  <div class="repo-container" [class.modal]="data">
-    <div class="repo-owner-image">
-      <img
-        [src]="repo.owner.avatar_url"
-        alt="Owner Avatar"
-        class="repo-avatar"
-      />
+@let repoData = repo();
+
+@if (repoData) {
+<div class="repo-container"
+     [class.modal]="isModal()">
+  <div class="repo-owner-image">
+    <img [src]="repoData.owner.avatar_url"
+         alt="Owner Avatar"
+         class="repo-avatar" />
+  </div>
+
+  <div class="repo-content">
+    <div class="repo-title-container">
+      <h2 class="repo-title">{{ repoData.name }}</h2>
     </div>
+    <p class="repo-description">{{ repoData.description }}</p>
 
-    <div class="repo-content">
-      <div class="repo-title-container">
-        <h2 class="repo-title">{{ repo.name }}</h2>
-      </div>
-      <p class="repo-description">{{ repo.description }}</p>
-
-      <div class="repo-info">
-        <span>Stars: {{ repo.stargazers_count }}</span>
-        <span>Issues: {{ repo.open_issues_count }}</span>
-        <span
-          >Submitted: {{ repo.created_at | daysSince }} days ago by
-          {{ repo.owner.login }}</span
-        >
-      </div>
+    <div class="repo-info">
+      <span>Stars: {{ repoData.stargazers_count }}</span>
+      <span>Issues: {{ repoData.open_issues_count }}</span>
+      <span>Submitted: {{ repoData.created_at | daysSince }} days ago by
+        {{ repoData.owner.login }}</span>
     </div>
   </div>
+  <app-rating [rating]="rating()"
+              [disabled]="!isModal()"
+              (rated)="onRepoRated($event)" />
+</div>
 } @else {
-  <div class="repo-container">
-    <p>Loading...</p>
-  </div>
+<div class="repo-container">
+  <p>Loading...</p>
+</div>
 }
