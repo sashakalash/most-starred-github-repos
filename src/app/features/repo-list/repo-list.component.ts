@@ -18,11 +18,10 @@ import { RateRepoDialogComponent } from '@app/shared/components/rate-repo-dialog
   providers: [RepoApiService],
 })
 export class RepoListComponent {
-  private repoApiService = inject(RepoApiService);
   private dialog = inject(MatDialog);
   private ratingService = inject(RatingService);
 
-  data = new RepoDataSource(this.repoApiService);
+  data = new RepoDataSource();
 
   trackById(_index: number, item: IRepo): number {
     return item.id;

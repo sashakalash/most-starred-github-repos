@@ -4,7 +4,7 @@
 <div class="repo-container"
      [class.modal]="isModal()">
   <div class="repo-owner-image">
-    <img [src]="repoData.owner.avatar_url"
+    <img [src]="repoData.owner?.avatar_url"
          alt="Owner Avatar"
          class="repo-avatar" />
   </div>
@@ -19,7 +19,7 @@
       <span>Stars: {{ repoData.stargazers_count }}</span>
       <span>Issues: {{ repoData.open_issues_count }}</span>
       <span>Submitted: {{ repoData.created_at | daysSince }} days ago by
-        {{ repoData.owner.login }}</span>
+        {{ repoData.owner?.login }}</span>
     </div>
   </div>
   <app-rating [rating]="rating()"

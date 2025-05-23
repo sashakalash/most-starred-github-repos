@@ -42,8 +42,9 @@ export class RepoDataSource extends DataSource<IRepo> {
 
   private route = inject(ActivatedRoute);
   private router = inject(Router);
+  private dataSourceService = inject(RepoApiService);
 
-  constructor(private dataSourceService: RepoApiService) {
+  constructor() {
     super();
     this.fetchPage(1);
   }

@@ -4,18 +4,30 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 ## Features
 
-*   **List Most Starred Repos:** Displays a list of the most starred GitHub repositories created in the last 30 days.
+*   **List Most Starred Repos:** Displays a list of the most starred GitHub repositories created in the last 30 days, sorted in descending order by star count.
 *   **Repository Details:** Each repository row includes:
     *   Repository name (clickable to open a modal)
     *   Repository description
     *   Number of stars
     *   Number of issues
     *   Username and avatar of the owner
-*   **Infinite Scroll Pagination:**  New results are loaded as the user scrolls.
+*   **Infinite Scroll Pagination:** The list is implemented as an infinite scroll. New results are loaded as the user scrolls.
+*   **Virtual Scroll:** Virtual scroll is implemented using Angular Material's `cdk-virtual-scroll-viewport`, so only the rows visible to the user are rendered on the screen.
 *   **Repository Rating (Modal):**
-    *   Clicking the repository name opens a modal window with the repository details.
+    *   Clicking the repository name opens a modal window with repository details.
     *   Users can rate the repository using a 5-star rating system within the modal.
     *   The given rating is displayed next to the repository name in the main list after the modal is closed.
+*   **Reusable Component:** Both the repository list and the modal use the same reusable component for displaying repository information (DRY principle).
+*   **Separation of Concerns:** The application logic is split between smart and dumb components.
+
+## Technical Details
+
+- The most starred repos list is displayed in descending order by star count for the last 30 days.
+- Infinite scroll is implemented using Angular Material's `cdk-virtual-scroll-viewport`.
+- For correct usage of `cdk-virtual-scroll-viewport`, in some cases signals were replaced with BehaviorSubjects.
+- Routing and error handling are excluded from the current MVP release for delivery speed. In the next release, an HTTP interceptor will be used for these purposes.
+- The repository list and modal window use the same component to follow the DRY principle.
+- The application logic follows the separation of concerns principle: dumb and smart components.
 
 ## Development server
 
@@ -26,14 +38,13 @@ ng serve
 ```
 Once the server is running, open your browser and navigate to http://localhost:4200/. The application will automatically reload whenever you modify any of the source files.
 
-
+## Test Coverage
+You can track the progress of test coverage by comparing the coverage summary before and after adding tests.
+To get test coverage report, run:
+```bash
+ng coverage
+```
 --- First Run ---
-✔ Browser application bundle generation complete.
-20 05 2025 10:46:19.530:INFO [karma-server]: Karma v6.4.4 server started at http://localhost:9876/
-20 05 2025 10:46:19.531:INFO [launcher]: Launching browsers Chrome with concurrency unlimited
-20 05 2025 10:46:19.534:INFO [launcher]: Starting browser Chrome
-20 05 2025 10:46:20.576:INFO [Chrome 136.0.0.0 (Mac OS 10.15.7)]: Connected on socket 6ldsvgH6_STeqFQWAAAB with id 70914799
-Chrome 136.0.0.0 (Mac OS 10.15.7): Executed 1 of 1 SUCCESS (0.017 secs / 0.013 secs)
 TOTAL: 1 SUCCESS
 
 =============================== Coverage summary ===============================
@@ -42,6 +53,14 @@ Branches     : 100% ( 0/0 )
 Functions    : 100% ( 0/0 )
 Lines        : 100% ( 2/2 )
 ================================================================================
+
 --- Last Run ---
+TOTAL: 34 SUCCESS
+
+=============================== Coverage summary ===============================
+Statements   : 98.59% ( 140/142 )
+Branches     : 95% ( 19/20 )
+Functions    : 97.5% ( 39/40 )
+Lines        : 98.5% ( 132/134 )
 Why I didn’t use full NgRx:
 This project’s state is relatively simple. I used Angular services and Signal-based stores to avoid overengineering. If the app were to scale (e.g., with auth, theming, offline mode), I’d introduce NgRx for better state traceability and modularity.

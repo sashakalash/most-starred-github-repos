@@ -1,12 +1,13 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, map } from 'rxjs';
+
 import {
   IDataSourceParams,
   RepoParams,
 } from '@app/shared/interfaces/data-source-params.interface';
 import { IRepoApiResponse } from '@app/shared/interfaces/repo-api-response.interface';
 import { IRepo } from '@app/shared/interfaces/repo.interface';
-import { Observable, map } from 'rxjs';
 import { RepoApiService } from './repo-api.service';
 
 const DAYS_FOR_PREVIOUS_DATE = 30;
@@ -63,8 +64,6 @@ export class RepoListService {
     params['q'] = combinedParams['q'];
     params['sort'] = combinedParams['sort'];
     params['order'] = combinedParams['order'];
-
-    console.log(page);
 
     return this.dataSourceService.getRepos(params).pipe(
       map((response: IRepoApiResponse) => {
