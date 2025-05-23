@@ -92,6 +92,7 @@ export class RepoDataSource extends DataSource<IRepo> {
       q: params.q,
       sort: params.sort,
       order: params.order,
+      page: this.currentPage(),
     };
     this.router.navigate([], {
       relativeTo: this.route,

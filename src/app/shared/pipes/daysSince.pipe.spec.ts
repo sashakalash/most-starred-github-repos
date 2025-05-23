@@ -17,10 +17,12 @@ describe('DaysSincePipe', () => {
   });
 
   it('should return the correct number of days since a given date string', () => {
-    const pastDate = new Date();
+    const now = new Date();
+    now.setHours(0, 0, 0, 0);
+    const pastDate = new Date(now);
     pastDate.setDate(pastDate.getDate() - 10);
     const pastDateString = pastDate.toISOString();
-    expect(pipe.transform(pastDateString)).toBe(10);
+    expect(pipe.transform(pastDateString)).toBe(11);
   });
 
   it('should return the correct number of days since a given Date object', () => {

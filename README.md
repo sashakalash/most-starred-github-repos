@@ -1,59 +1,71 @@
-# MostStarredGithubRepos
+# Frontend Coding Challenge
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.3.
+## Idea of the App
 
-## Development server
+The task is to implement a small webapp that will list the most starred Github repos that were created in the last 30 days.
+You'll be fetching the sorted JSON data directly from the Github API (Github API explained down below).
 
-To start a local development server, run:
+## Features
 
-```bash
-ng serve
-```
+- As a User I should be able to list the most starred Github repos that were created in the last 30 days.
+- As a User I should see the results as a list. One repository per row.
+- As a User I should be able to see for each repo/row the following details :
+  - Repository name
+  - Repository description
+  - Number of stars for the repo.
+  - Number of issues for the repo.
+  - Username and avatar of the owner.
+- As a User I should be able to keep scrolling and new results should appear (pagination).
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Extra points:
 
-## Code scaffolding
+- As a User I should be able to click on the name of the repo to open a modal window the datails requested above
+- As a User I should be able only on the modal window to rate the repo using a stars model (5 stars rating mode)
+- As a User I should be able to close the modal window and see the given rating on the right side of the repo name
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Things to keep in mind
 
-```bash
-ng generate component component-name
-```
+Please understand that this challenge is not decisive if you are applying to work at Circunomics. This is just an opportunity for us both to work together and get to know each other in a more technical way.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- Features are as important as code quality. Try to balance between code quality and number of features implemented
+- Your code will be evaluated in this order based on: code structure, programming best practices, legibility and number of features implemented or speed
+- The git commit history (and git commit messages) will be also evaluated
+- Please run tests and provide the results of the first and last run
+- Do not forget to include few details about the project in the PROJECT.md (e.g explain choice of libraries, how to run it ...)
 
-```bash
-ng generate --help
-```
+## How to get the data from Github
 
-## Building
+To get the most starred Github repos created in the last 30 days (relative to 2021-Feb-[Start_Date]), you'll need to call the following endpoint :
 
-To build the project run:
+`https://api.github.com/search/repositories?q=created:>[Start_Date]&sort=stars&order=desc`
 
-```bash
-ng build
-```
+The JSON data from Github will be paginated (you'll receive around 100 repos per JSON page).
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+To get the 2nd page, you add `&page=2` to the end of your API request :
 
-## Running unit tests
+`https://api.github.com/search/repositories?q=created:>2017-10-22&sort=stars&order=desc&page=2`
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+To get the 3rd page, you add `&page=3` ... etc
 
-```bash
-ng test
-```
+You can read more about the Github API over [here](https://docs.github.com/en/rest/reference/search#search-repositories).
 
-## Running end-to-end tests
+## Mockups
 
-For end-to-end (e2e) testing, run:
+![alt text](https://github.com/Circunomics/hiring_FrontendCodingChallenge/blob/master/mockup.png?raw=true)
 
-```bash
-ng e2e
-```
+Here's what each element represents :
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+![alt text](https://github.com/Circunomics/hiring_FrontendCodingChallenge/blob/master/row_explained.png?raw=true)
 
-## Additional Resources
+## Technologies to use
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Angular
+
+## How to submit the challenge solution?
+
+Now after you finished your app and we assume that you already pushed it to your repo account, if so please follow the instructions below:
+
+1. Set the Repo privacy:
+   - If the repo is sensitive and you're not comfortable sharing it publicly please tell us where you are going to push the code and we will provide you with an user that you can give access to.
+   - If it's public go to the next step
+2. Send the repo's link to this email: `jobs@circunomics.com`.

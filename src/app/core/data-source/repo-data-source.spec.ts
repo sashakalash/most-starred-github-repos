@@ -86,11 +86,11 @@ describe('RepoDataSource', () => {
 
   it('should update query params', () => {
     repoApiService.getRepos.and.returnValue(of(mockApiResponse));
-    const params = { q: 'test', sort: 'name', order: 'asc' };
+    const params = { q: 'test', sort: 'name', order: 'asc', page: 1 };
     (dataSource as any).updateQueryParams(params);
     expect(router.navigate).toHaveBeenCalledWith([], {
       relativeTo: activatedRoute,
-      queryParams: { q: 'test', sort: 'name', order: 'asc' },
+      queryParams: { q: 'test', sort: 'name', order: 'asc', page: 1 },
       queryParamsHandling: 'merge',
     });
   });

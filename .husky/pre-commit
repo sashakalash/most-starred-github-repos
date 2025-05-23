@@ -1,2 +1,1 @@
-# npm run lint --fix && npx prettier --write . && ng test --watch=false && npx lint-staged
-npx lint-staged
+ng test --watch=false && npx lint-staged
